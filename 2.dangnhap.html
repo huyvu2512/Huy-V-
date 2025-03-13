@@ -1,0 +1,109 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HUY VŨ - Đăng nhập</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <style>
+            body {
+                background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/04ef06cc-5f81-4a8e-8db0-6430ba4af286/web/VN-vi-20250224-TRIFECTA-perspective_9fe85be7-afd9-4585-88fc-575a9825bf7a_large.jpg');
+                background-size: cover;
+                background-position: center;
+            }
+            .overlay {
+                background-color: rgba(0, 0, 0, 0.5);
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+            }
+        </style>
+    </head>
+    <body class="flex items-center justify-center min-h-screen relative">
+        <div class="overlay"></div>
+        <div class="absolute top-8 left-8">
+            <a href="1.trangkhoidau.html">
+                <img src="https://i.postimg.cc/L6dtzvbR/Screenshot-12-1.png" alt="Netflix logo" class="w-64">
+            </a>
+        </div>
+        <div class="bg-black bg-opacity-75 p-8 rounded-lg max-w-md w-full">
+            <h2 class="text-2xl font-bold text-white mb-6">Đăng nhập</h2>
+            <form class="space-y-4" onsubmit="handleLogin(event)">
+                <div>
+                    <input type="text" id="emailOrPhone" placeholder="Email hoặc số điện thoại di động" class="w-full p-3 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-600" pattern="^((\+84)|0)[1-9]{1}[0-9]{8}$|^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+                </div>
+                <div>
+                    <input type="password" id="password" placeholder="Mật khẩu" class="w-full p-3 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-600" required>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="remember" class="mr-2">
+                    <label for="remember" class="text-gray-400">Ghi nhớ tôi</label>
+                </div>
+                <button type="submit" class="w-full p-3 bg-red-600 text-white font-bold rounded hover:bg-red-700">Đăng nhập</button>
+            </form>
+            <div class="flex items-center justify-between mt-4">
+                <hr class="w-full border-gray-600">
+                <span class="px-2 text-gray-400">HOẶC</span>
+                <hr class="w-full border-gray-600">
+            </div>
+            <div class="mt-4">
+                <button class="w-full p-3 bg-gray-600 text-white font-bold rounded hover:bg-gray-700">Sử dụng mã đăng nhập</button>
+            </div>
+            <div class="mt-4 text-center">
+                <a href="#" class="text-blue-500 hover:underline">Bạn quên mật khẩu?</a>
+            </div>
+            <div class="mt-4 text-center text-gray-400">
+                Bạn mới sử dụng Netflix? <a href="#" class="text-white hover:underline">Đăng ký ngay.</a>
+            </div>
+            <div class="mt-4 text-center text-gray-400 text-sm">
+                Trang này được Google reCAPTCHA bảo vệ để đảm bảo bạn không phải là robot. <a href="#" class="text-blue-500 hover:underline" onclick="toggleInfo(event)">Tìm hiểu thêm.</a>
+            </div>
+            <div id="info" class="mt-4 text-center text-gray-400 text-sm hidden">
+                Thông tin do Google reCAPTCHA thu thập sẽ tuân theo Chính sách Quyền riêng tư và Điều khoản dịch vụ của Google, và được dùng để cung cấp, duy trì và cải thiện dịch vụ reCAPTCHA cũng như các mục đích bảo mật nói chung (thông tin này không được dùng để cá nhân hóa quảng cáo của Google).
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                const savedEmailOrPhone = localStorage.getItem('emailOrPhone');
+                const savedPassword = localStorage.getItem('password');
+                if (savedEmailOrPhone && savedPassword) {
+                    document.getElementById('emailOrPhone').value = savedEmailOrPhone;
+                    document.getElementById('password').value = savedPassword;
+                    document.getElementById('remember').checked = true;
+                }
+            });
+    
+            function handleLogin(event) {
+                event.preventDefault();
+                const emailOrPhone = document.getElementById('emailOrPhone').value;
+                const password = document.getElementById('password').value;
+                const remember = document.getElementById('remember').checked;
+    
+                // Check if the credentials match the predefined ones
+                if (emailOrPhone === '12345678' && password === '123') {
+                    if (remember) {
+                        localStorage.setItem('emailOrPhone', emailOrPhone);
+                        localStorage.setItem('password', password);
+                    } else {
+                        localStorage.removeItem('emailOrPhone');
+                        localStorage.removeItem('password');
+                    }
+    
+                    // Redirect to another page after login
+                    window.location.href = "3.trangchu.html";
+                } else {
+                    alert('Tài khoản hoặc mật khẩu không đúng');
+                }
+            }
+    
+            function toggleInfo(event) {
+                event.preventDefault();
+                const info = document.getElementById('info');
+                info.classList.toggle('hidden');
+            }
+        </script>
+    </body>
+    </html>

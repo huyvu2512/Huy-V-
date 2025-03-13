@@ -1,0 +1,237 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>HUY VŨ - Trang chủ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        .navbar {
+            transition: background-color 0.3s ease-in-out, top 0.3s ease-in-out;
+            background-color: transparent;
+            top: 0;
+        }
+        .navbar.scrolled {
+            background-color: black;
+        }
+        .movie-banner {
+            width: 200px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-roboto">
+    
+    <!-- Thanh Công Cụ -->
+    <header id="navbar" class="navbar flex items-center justify-between p-4 fixed left-0 w-full z-50">
+        <div class="flex items-center space-x-4">
+            <a href="3.trangchu.html">
+                <img alt="Netflix logo" class="h-10" src="https://i.postimg.cc/L6dtzvbR/Screenshot-12-1.png" width="150"/>
+            </a>
+            <nav class="hidden md:flex space-x-4">
+                <a class="text-white hover:text-gray-400 font-bold" href="#">Trang chủ</a>
+                <a class="text-white hover:text-gray-400" href="#">Series</a>
+                <a class="text-white hover:text-gray-400" href="#">Phim</a>
+                <a class="text-white hover:text-gray-400" href="#">Mới & Phổ biến</a>
+                <a class="text-white hover:text-gray-400" href="#">Danh sách của tôi</a>
+                <a class="text-white hover:text-gray-400" href="#">Duyệt tìm theo ngôn ngữ</a>
+            </nav>
+        </div>
+        <div class="relative flex items-center space-x-4">
+            <div class="relative">
+                <i class="fas fa-search text-white cursor-pointer" onclick="toggleSearch()"></i>
+                <div id="searchBar" class="hidden absolute right-0 mt-2 w-64 bg-gray-800 rounded-lg shadow-lg">
+                    <input type="text" id="searchInput" class="w-full p-2 bg-gray-700 text-white rounded" placeholder="Tìm kiếm phim..." oninput="searchMovies()"/>
+                    <div id="searchResults" class="p-2 text-white"></div>
+                </div>
+            </div>
+            <div class="relative">
+                <i class="fas fa-bell text-white cursor-pointer" onclick="toggleNotifications()"></i>
+                <div id="notificationMenu" class="hidden absolute right-0 mt-2 w-64 bg-gray-800 rounded-lg shadow-lg">
+                    <div class="p-4 text-white font-bold border-b border-gray-700">Thông báo</div>
+                    <div class="p-4 text-white">Không có thông báo</div>
+                </div>
+            </div>
+            <div class="relative">
+                <img alt="User profile" class="h-10 rounded cursor-pointer" src="https://storage.googleapis.com/a1aa/image/pQrokMEg7BJFBLHHB828f-qEvU0NfXUxrpZMtPq26bs.jpg" onclick="toggleProfileMenu()"/>
+                <div id="profileMenu" class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg">
+                    <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700 flex items-center space-x-2">
+                        <i class="fas fa-user-cog"></i>
+                        <span>Quản lý hồ sơ</span>
+                    </a>
+                    <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700 flex items-center space-x-2">
+                        <i class="fas fa-user"></i>
+                        <span>Tài khoản</span>
+                    </a>
+                    <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700 flex items-center space-x-2">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Trung tâm trợ giúp</span>
+                    </a>
+                    <a href="2.dangnhap.html" class="block px-4 py-2 text-white hover:bg-gray-700 flex items-center space-x-2">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Đăng xuất</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Banner -->
+    <section class="relative w-screen h-screen">
+        <img alt="Banner" class="w-full h-full object-cover" src="https://i.pinimg.com/736x/d2/42/d5/d242d5606dd573a6b115bce46b0b767f.jpg" />
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black via-transparent to-transparent">
+            <div class="absolute bottom-0 p-8">
+                <h1 class="text-4xl md:text-6xl font-bold">Lập trình web là gì?</h1>
+                <p class="mt-4 text-lg md:text-xl max-w-lg">
+                    Lập trình web có thể tạo ra các trang tĩnh (static website) hoặc trang động (dynamic website) để phục vụ nhiều mục đích khác nhau như blog, thương mại điện tử, mạng xã hội...
+                </p>
+                <div class="mt-4 flex space-x-4">
+                    <a href="4.phat.html" class="bg-white text-black px-6 py-2 rounded flex items-center space-x-2">
+                        <i class="fas fa-play"></i>
+                        <span>Phát</span>
+                    </a>
+                    <a href="5.laptrinhweb.html" class="bg-gray-700 text-white px-6 py-2 rounded">Thông tin khác</a>
+                </div>    
+            </div>
+        </div>
+    </section>
+    
+    <!-- Danh Sách Phim -->
+    <section class="p-8">
+        <h2 class="text-2xl font-bold mb-4 text-red-500">Phim Việt Nam</h2>
+        <div class="flex space-x-4 overflow-x-auto" id="movieList">
+            <!-- Phim 1 -->
+            <div class="w-48 flex-shrink-0 relative group" onclick="showYoutubeFullscreen('E7exHaPHDeM')">
+                <img alt="Poster phim Đèn Âm Hồn với hình ảnh một ngôi nhà ma ám và bóng ma" class="movie-banner cursor-pointer transition duration-300 group-hover:brightness-110" 
+                     src="https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/m/a/main_ah_social-1.jpg"/>
+                <p class="mt-2 text-center text-white group-hover:text-yellow-300 transition duration-300 font-semibold">
+                    Đèn Âm Hồn
+                </p>
+            </div>
+            
+            <!-- Phim 2 -->
+            <div class="w-48 flex-shrink-0 relative group" onclick="showYoutubeFullscreen('wr6MeifZCUs')">
+                <img alt="Poster phim Nụ Hôn Bạc Tỷ với hình ảnh một cặp đôi đang hôn nhau" class="movie-banner cursor-pointer transition duration-300 group-hover:brightness-110" 
+                     src="https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/3/image/1800x/71252117777b696995f01934522c402d/4/7/470wx700h-nuhonbacty.jpg"/>
+                <p class="mt-2 text-center text-white group-hover:text-yellow-300 transition duration-300 font-semibold">
+                    Nụ Hôn Bạc Tỷ
+                </p>
+            </div>
+
+            <!-- Phim 3 -->
+            <div class="w-48 flex-shrink-0 relative group" onclick="showYoutubeFullscreen('zKMOgOWn8lQ')">
+                <img alt="Poster phim Bộ Tứ Báo Thù với hình ảnh bốn nhân vật chính trong trang phục chiến đấu" class="movie-banner cursor-pointer transition duration-300 group-hover:brightness-110" 
+                     src="https://api-website.cinestar.com.vn/media/wysiwyg/Posters/01-2025/bo-tu-bao-thu-official.jpg"/>
+                <p class="mt-2 text-center text-white group-hover:text-yellow-300 transition duration-300 font-semibold">
+                    Bộ Tứ Báo Thù
+                </p>
+            </div>
+
+            <!-- Phim 4 -->
+            <div class="w-48 flex-shrink-0 relative group" onclick="showYoutubeFullscreen('HXWRTGbhb4U')">
+                <img alt="Poster phim MAI với hình ảnh một cô gái trẻ đứng trước một ngôi nhà cổ" class="movie-banner cursor-pointer transition duration-300 group-hover:brightness-110" 
+                     src="https://img.cand.com.vn/resize/800x800/NewFiles/Images/2024/02/21/Phim_Mai_cua_Tran_Thanh_ra_rap_T-1708499870483.jpg"/>
+                <p class="mt-2 text-center text-white group-hover:text-yellow-300 transition duration-300 font-semibold">
+                    MAI
+                </p>
+            </div>
+
+            <!-- Phim 5 -->
+            <div class="w-48 flex-shrink-0 relative group" onclick="showYoutubeFullscreen('d1ZHdosjNX8')">
+                <img alt="Poster phim Lật Mặt 7: Một Điều Ước với hình ảnh một nhóm người đang chạy trốn" class="movie-banner cursor-pointer transition duration-300 group-hover:brightness-110" 
+                     src="https://upload.wikimedia.org/wikipedia/vi/d/d4/%C3%81p_ph%C3%ADch_ch%C3%ADnh_th%E1%BB%A9c_L%E1%BA%ADt_m%E1%BA%B7t_7.jpg"/>
+                <p class="mt-2 text-center text-white group-hover:text-yellow-300 transition duration-300 font-semibold">
+                    Lật Mặt 7: Một Điều Ước
+                </p>
+            </div>
+
+            <!-- Phim 6 -->
+            <div class="w-48 flex-shrink-0 relative group" onclick="showYoutubeFullscreen('d7iXT864C4w')">
+                <img alt="Poster phim Yêu Nhầm Bạn Thân với hình ảnh một cặp đôi đang cười đùa" class="movie-banner cursor-pointer transition duration-300 group-hover:brightness-110" 
+                     src="https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/m/a/main_social_1_.jpg"/>
+                <p class="mt-2 text-center text-white group-hover:text-yellow-300 transition duration-300 font-semibold">
+                    Yêu Nhầm Bạn Thân
+                </p>
+            </div>
+
+            <!-- Phim 7 -->
+            <div class="w-48 flex-shrink-0 relative group" onclick="showYoutubeFullscreen('c-ASaavjtPw')">
+                <img alt="Poster phim Đào, Phở Và Piano với hình ảnh một người đàn ông chơi piano và một người phụ nữ đứng bên cạnh" class="movie-banner cursor-pointer transition duration-300 group-hover:brightness-110" 
+                     src="https://images2.thanhnien.vn/528068263637045248/2024/2/19/18a-1708362773728296435986.jpg"/>
+                <p class="mt-2 text-center text-white group-hover:text-yellow-300 transition duration-300 font-semibold">
+                    Đào, Phở Và Piano
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popup Fullscreen -->
+    <div id="fullscreenVideo" class="hidden fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
+        <!-- Nút đóng bên ngoài -->
+        <button class="absolute top-6 right-6 text-white text-3xl bg-gray-900 bg-opacity-75 px-4 py-2 rounded-full hover:bg-red-600 transition"
+            onclick="closeFullscreen()">✖</button>
+    
+        <!-- Khung video lớn nhưng không full -->
+        <div class="relative w-[90%] h-[85%] max-w-5xl bg-black rounded-lg shadow-lg">
+            <iframe id="youtubeFullscreenFrame" class="w-full h-full rounded-lg" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+    
+    <script>
+    const movies = [
+        { title: "Đèn Âm Hồn", videoId: "E7exHaPHDeM" },
+        { title: "Nụ Hôn Bạc Tỷ", videoId: "wr6MeifZCUs" },
+        { title: "Bộ Tứ Báo Thù", videoId: "zKMOgOWn8lQ" },
+        { title: "MAI", videoId: "HXWRTGbhb4U" },
+        { title: "Lật Mặt 7: Một Điều Ước", videoId: "d1ZHdosjNX8" },
+        { title: "Yêu Nhầm Bạn Thân", videoId: "d7iXT864C4w" },
+        { title: "Đào, Phở Và Piano", videoId: "c-ASaavjtPw" }
+    ];
+
+    function showYoutubeFullscreen(videoId) {
+        document.getElementById('youtubeFullscreenFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1&fs=1`;
+        document.getElementById('fullscreenVideo').classList.remove('hidden');
+    }
+    
+    function closeFullscreen() {
+        document.getElementById('youtubeFullscreenFrame').src = ''; // Dừng video khi đóng
+        document.getElementById('fullscreenVideo').classList.add('hidden');
+    }
+
+    function toggleProfileMenu() {
+        const profileMenu = document.getElementById('profileMenu');
+        profileMenu.classList.toggle('hidden');
+    }
+
+    function toggleNotifications() {
+        const notificationMenu = document.getElementById('notificationMenu');
+        notificationMenu.classList.toggle('hidden');
+    }
+
+    function toggleSearch() {
+        const searchBar = document.getElementById('searchBar');
+        searchBar.classList.toggle('hidden');
+    }
+
+    function searchMovies() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const results = movies.filter(movie => movie.title.toLowerCase().includes(query));
+        const searchResults = document.getElementById('searchResults');
+        searchResults.innerHTML = results.map(movie => `<div class="p-2 text-white hover:bg-gray-700 cursor-pointer" onclick="showYoutubeFullscreen('${movie.videoId}')">${movie.title}</div>`).join('');
+    }
+
+    window.addEventListener("scroll", function() {
+        let navbar = document.getElementById("navbar");
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+    });
+    </script>
+    
+</body>
+</html>
